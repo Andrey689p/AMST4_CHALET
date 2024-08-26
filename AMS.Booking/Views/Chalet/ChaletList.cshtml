@@ -1,0 +1,64 @@
+﻿@using AMST4_Carousel.MVC.Models
+@model IEnumerable<AmsBooking.Models.Entities.Chalet>
+@{
+ViewBag.Title = "Listar Chalé";
+var categories = ViewBag.Categories as IEnumerable<AmsBooking.Models.Entities.Category>;
+var capacities = ViewBag.Capacities as IEnumerable<Capacity>;
+}
+
+<div class="container">
+    <h2>Listar Chalé</h2>
+    <a asp-action="AddChalet" class="btn btn-outline-success">Adicionar Chalé</a>
+    <form method="get" action="@Url.Action("ChaletList", "Chalet")">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="categoryFilter">Categoria</label>
+                    <select id="categoryFilter" name="categoryId" class="form-control">
+                        <option value="">Todas Categorias</option>
+                        @foreach (var category in categories)
+                        {
+                        <option value="@category.Id">@category.Description</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="capacityFilter">Capacidades</label>
+                    <select id="capacityFilter" name="capacityId" class="form-control">
+                        <option value="">Todas as Capacidaes</option>
+                        @foreach (var capacity in capacities)
+                        {
+                        <option value="@capacity.Id">@capacity.Description</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4 mb-3">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        @foreach (var chalet in Model)
+        {
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="~/@chalet.ImageUrl1" class="card-img-top" alt="Chalet Image">
+                <div class="card-body">
+                    <h5 class="card-title">@chalet.Description</h5>
+                    <p class="card-text">Preço por Noite: R$ @chalet.Price</p>
+                    <p class="card-text">Categoria: @chalet.Category.Description</p>
+                    <p class="card-text">Capacidade: @chalet.Capacity.Description</p>
+                    <a class="btn btn-primary t" asp-controller="Booking" asp-action="CreateBooking" asp-route-chaletId="@chalet.Id">Agendar</a>
+                    
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

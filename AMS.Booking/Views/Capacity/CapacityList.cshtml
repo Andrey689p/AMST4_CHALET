@@ -1,0 +1,57 @@
+﻿@model IEnumerable<AMST4_Carousel.MVC.Models.Capacity>
+
+@{
+    ViewData["Title"] = "Lista de Capacidades";
+}
+
+<h1>Lista de Capacidades</h1>
+
+<p>
+    <a class="btn btn-outline-success" asp-action="CreateCapacity">Adicionar</a>
+</p>
+<table id="myTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Está Ativo
+            </th>
+            <th>
+                Data de Criação
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateData)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="EditCapacity" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-danger" asp-action="DeleteCapacity" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        var table = new DataTable('#myTable', {
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.7/i18n/pt-BR.json',
+            },
+        });
+    </script>
+
+}
