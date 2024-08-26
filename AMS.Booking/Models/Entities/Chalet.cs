@@ -17,6 +17,6 @@ namespace AmsBooking.Models.Entities
         public virtual Category Category { get; set; }
         public Guid CapacityId { get; set; }
         public virtual Capacity Capacity { get; set; }
-        public string Quartos { get; set; }
+        public string Benefícios { get; set; }
     }
 }

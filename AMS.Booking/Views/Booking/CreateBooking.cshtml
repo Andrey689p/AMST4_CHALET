@@ -1,6 +1,7 @@
 @model AmsBooking.Models.Entities.Booking
 
 @{
+
 ViewBag.Title = "Agendar Chalé";
 var today = DateTime.Now.ToString("yyyy-MM-dd");
 var chaletPrice = Model.Chalet.Price;
@@ -16,6 +17,7 @@ var chaletPrice = Model.Chalet.Price;
             <p><strong>Preço por Noite:</strong> R$ @Model.Chalet?.Price</p>
             <p><strong>Categoria:</strong> @Model.Chalet?.Category.Description</p>
             <p><strong>Capacidade:</strong> @Model.Chalet?.Capacity.Description</p>
+            <p><strong>Benefícios:</strong> @Model.Chalet?.Benefícios</p>
 
             <form id="bookingForm" method="post" action="@Url.Action("CreateBooking", "Booking")">
                 <input type="hidden" name="ChaletId" value="@Model.ChaletId" />
@@ -35,7 +37,7 @@ var chaletPrice = Model.Chalet.Price;
                     <input type="text" id="totalPrice" class="form-control" readonly />
                 </div>
 
-                <button type="submit" class="btn btn-outline-primary mt-3">Agendar</button>
+                <button type="submit" class="btn btn-outline-primary mt-3">Reservar</button>
             </form>
         </div>
     </div>

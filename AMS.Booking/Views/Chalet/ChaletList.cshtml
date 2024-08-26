@@ -8,7 +8,6 @@ var capacities = ViewBag.Capacities as IEnumerable<Capacity>;
 
 <div class="container">
     <h2>Listar Chalé</h2>
-    <a asp-action="AddChalet" class="btn btn-outline-success">Adicionar Chalé</a>
     <form method="get" action="@Url.Action("ChaletList", "Chalet")">
         <div class="row mt-3">
             <div class="col-md-4">
@@ -54,7 +53,8 @@ var capacities = ViewBag.Capacities as IEnumerable<Capacity>;
                     <p class="card-text">Preço por Noite: R$ @chalet.Price</p>
                     <p class="card-text">Categoria: @chalet.Category.Description</p>
                     <p class="card-text">Capacidade: @chalet.Capacity.Description</p>
-                    <a class="btn btn-primary t" asp-controller="Booking" asp-action="CreateBooking" asp-route-chaletId="@chalet.Id">Agendar</a>
+                    <p class="card-text">Benefícios: @chalet.Benefícios</p>
+                    <a class="btn btn-primary t" asp-controller="Booking" asp-action="CreateBooking" asp-route-chaletId="@chalet.Id">Reservar</a>
                     
                 </div>
             </div>
