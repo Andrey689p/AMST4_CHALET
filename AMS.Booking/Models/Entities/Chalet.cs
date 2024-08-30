@@ -12,7 +12,6 @@ namespace AmsBooking.Models.Entities
         public string ImageUrl1 { get; set; }
         public string ImageUrl2 { get; set; }
         public string ImageUrl3 { get; set; }
-        public string ImageUrl4 { get; set; }
         public Guid CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public Guid CapacityId { get; set; }

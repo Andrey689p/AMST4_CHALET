@@ -34,7 +34,7 @@ var chaletPrice = Model.Chalet.Price;
 
                 <div class="form-group">
                     <label for="totalPrice">Preço Total</label>
-                    <input type="text" id="totalPrice" class="form-control" readonly />
+                    <input type="text" id="totalPrice" value="R$ 0,00" class="form-control" readonly />
                 </div>
 
                 <button type="submit" class="btn btn-outline-primary mt-3">Reservar</button>
@@ -44,25 +44,24 @@ var chaletPrice = Model.Chalet.Price;
 </div>
 
 @section Scripts {
-<script>
-    var chaletPrice = @chaletPrice;
+    <script>
+        var chaletPrice = @chaletPrice;
 
-    document.getElementById('startDate').addEventListener('change', updateTotalPrice);
-    document.getElementById('endDate').addEventListener('change', updateTotalPrice);
+        document.getElementById('startDate').addEventListener('change', updateTotalPrice);
+        document.getElementById('endDate').addEventListener('change', updateTotalPrice);
 
-    function updateTotalPrice() {
-        var startDate = new Date(document.getElementById('startDate').value);
-        var endDate = new Date(document.getElementById('endDate').value);
+        function updateTotalPrice() {
+            var startDate = new Date(document.getElementById('startDate').value);
+            var endDate = new Date(document.getElementById('endDate').value);
 
-        if (startDate && endDate && endDate > startDate) {
-            var numberOfDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
-            var pricePerDay = 100; 
-            var totalPrice = chaletPrice + (numberOfDays * pricePerDay);
+            if (startDate && endDate && endDate > startDate) {
+                var numberOfDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
+                var totalPrice = (numberOfDays * chaletPrice);
 
-            document.getElementById('totalPrice').value = "R$ " + totalPrice.toFixed(2);
-        } else {
-            document.getElementById('totalPrice').value = "R$ 0.00";
+                document.getElementById('totalPrice').value = "R$ " + totalPrice.toFixed(2);
+            } else {
+                document.getElementById('totalPrice').value = "R$ 0,00";
+            }
         }
-    }
-</script>
-}
+    </script>
+}  

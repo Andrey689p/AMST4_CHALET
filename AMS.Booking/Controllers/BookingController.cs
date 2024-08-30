@@ -47,7 +47,7 @@ namespace AmsBooking.Controllers
                     return NotFound();
                 }
 
-                booking.TotalPrice = (booking.NumberOfDays * 100) + chalet.Price;
+            booking.TotalPrice = (booking.NumberOfDays * chalet.Price);
                 _context.Booking.Add(booking);
                 _context.SaveChanges();
 
